@@ -6,9 +6,9 @@ import os
 
 
 
-account_sid = os.getenv['TWILIO_ACCOUNT_SID']
-auth_token = os.getenv['TWILIO_AUTH_TOKEN']
-twilio_phone_number = os.getenv['TO_NUMBER']
+#account_sid = os.getenv['TWILIO_ACCOUNT_SID']
+#auth_token = os.getenv['TWILIO_AUTH_TOKEN']
+#twilio_phone_number = os.getenv['TO_NUMBER']
 
 board_members=[+919791339999,+919003535432,+919952203666,+919786000666,+919994496460,+919943030700,+918667259494,+919952705699,
                +919894408567,+919943434217,+919842279290,+919787770022,+919894727272,+919790087484,+919894847232,+917373200155,
@@ -35,23 +35,23 @@ class President:
         text=response.text()
         return text
 
-    def send_invitation(self,invitation_text, recipient_phone_number):
-        client = Client(account_sid, auth_token)
-        message = client.messages.create(body=invitation_text,
-                                         from_=twilio_phone_number,to=recipient_phone_number)
-        print(f"Invitation sent to {recipient_phone_number}! Message SID: {message.sid}")
+    #def send_invitation(self,invitation_text, recipient_phone_number):
+    #client = Client(account_sid, auth_token)
+    #message = client.messages.create(body=invitation_text,
+    #from_=twilio_phone_number,to=recipient_phone_number)
+    #print(f"Invitation sent to {recipient_phone_number}! Message SID: {message.sid}")
 
 
     
     def send_messages_to_bord_members(self,uploaded_image,prompt):
         for recipient_phone_number in board_members:
             invitation_text = self.generate_invitation(prompt,uploaded_image)
-            self.send_invitation(invitation_text, recipient_phone_number)
+            #self.send_invitation(invitation_text, recipient_phone_number)
 
     def send_messages_to_club_members(self,uploaded_image,prompt):
         for recipient_phone_number in club_members:
             invitation_text = self.generate_invitation(prompt,uploaded_image)
-            self.send_invitation(invitation_text, recipient_phone_number) 
+            #self.send_invitation(invitation_text, recipient_phone_number) 
     
 
 class President_send_message:

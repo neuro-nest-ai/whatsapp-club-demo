@@ -98,32 +98,30 @@ class Dues:
                 trust_dict["Bank_number"]=Bank_number
                 trust_dict["UPI_traction_id"]=UPI_traction_id
                 trust.append(trust_dict)
-                self.send_whatsapp_message("The payment is done by {},{} and {} on {} to trust account and reply yes for confirmation".format
-                                           (Name,Amount,UPI_traction_id,Date))
+                #self.send_whatsapp_message("The payment is done by {},{} and {} on {} to trust account and reply yes for confirmation".format
+                #(Name,Amount,UPI_traction_id,Date))
         else:
-            print("Please upload screenshot")
+            print("Please upload  proper screenshot")
 
 
-    def send_whatsapp_message(self,message):
-        try:
+    #def send_whatsapp_message(self,message):
+     #try:
             # Initialize Twilio client
-            account_sid = 'your_twilio_account_sid'
-            auth_token = 'your_twilio_auth_token'
-            twilio_whatsapp_number = 'whatsapp:+14155238886'
-            recipient_whatsapp_number = 'whatsapp:+919488836000'
-            client = Client(account_sid, auth_token)
+    #account_sid = 'your_twilio_account_sid'
+    #auth_token = 'your_twilio_auth_token'
+    #twilio_whatsapp_number = 'whatsapp:+14155238886'
+    #recipient_whatsapp_number = 'whatsapp:+919488836000'
+    #client = Client(account_sid, auth_token)
 
             # Send WhatsApp message
             # Your Twilio WhatsApp number
-            message = client.messages.create(
-                body=message,
-                from_=twilio_whatsapp_number,
-                to=recipient_whatsapp_number  # Replace with actual recipient's phone number
-            )
-            print(f"WhatsApp message sent: {message.sid}")
-
-        except Exception as e:
-            print(f"Error sending WhatsApp message: {e}")
+    #message = client.messages.create(
+    #body=message,
+    #from_=twilio_whatsapp_number,
+    #to=recipient_whatsapp_number  # Replace with actual recipient's phone number)
+    #print(f"WhatsApp message sent: {message.sid}")
+    #except Exception as e:
+    #print(f"Error sending WhatsApp message: {e}")
 
 
 

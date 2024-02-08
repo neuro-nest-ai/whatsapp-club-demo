@@ -4,7 +4,6 @@ decouple
 datefinder
 pyngrok
 google-generativeai
-
 langchain
 PyPDF2
 chromadb
