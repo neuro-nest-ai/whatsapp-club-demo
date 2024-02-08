@@ -11,7 +11,7 @@ chromadb
 faiss-cpu
 langchain_google_genai
 langchain-community
-Pillow
+Pillow 
 pytesseract
 opencv-python
 mysqlclient
