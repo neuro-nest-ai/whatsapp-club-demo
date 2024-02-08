@@ -5,6 +5,10 @@ club = [
 {'DATE': '2024-09-07', 'Name': 'Ashok Paul', 'Amount': 15000, 'Subscription': 'Half yearly Subscription', 'Mobile Phone': 7373200155, 'Bank_number': 55, 'UPI_traction_id': 'NAN', 'Invoice_No': 0},
 ]
 
+users = [
+    {'name':'praveen','mobile_number':"","role":"user","first_login":False}
+]
+
 generation = [
 {'Date': '2023-07-01', 'Service': 'Club Service', 'Heading': 'Members family Function', 'content': 'We celebrated the Sastiapoorthy of our Past President and Senior member, Rtn. Ravisankar Sir. The grand celebration and lunch get-together at Grand Regent were a testament to the camaraderie that binds us. This project, which was a memorable event that honored the contributions of a distinguished member.', 'Duration_in_Hours': '2 Hours', 'Cost_of_club_in_Rs_For_Service _Projects_Only': 0, 'Volunteer_hours_For_Service_Projects_Only': 0, 'No_of_beneficieries_For_Service_Projects_Only': 1, 'Value_to_beneficieries_in_Rs_For_Service_Projects_Only': 0, 'Members': 16, 'Guest_Rtns': 0, 'Rotaractors': 0, 'Family': 0, 'Public': 0, 'club_For_Service_Projects_Only': 'Club AdministrationFamily Meeting/Activity'},
 {'Date': '2023-07-01', 'Service': 'Club Service', 'Heading': 'Bike ride trip to kanthaloor', 'content': 'On part of international fellowship of motorcycling rotarians, our member who is secretary of bikers group organised a trip to kanthaloor. 20 Members with 6 bike and that jeep and van were part of event and we had a stay there for a day. We had a good fellowship with all members enjoying a trip', 'Duration_in_Hours': '30 Hours', 'Cost_of_club_in_Rs_For_Service _Projects_Only': 0, 'Volunteer_hours_For_Service_Projects_Only': 0, 'No_of_beneficieries_For_Service_Projects_Only': 0, 'Value_to_beneficieries_in_Rs_For_Service_Projects_Only': 0, 'Members': 20, 'Guest_Rtns': 0, 'Rotaractors': 0, 'Family': 0, 'Public': 0, 'club_For_Service_Projects_Only': 'Club AdministrationTour program'},

@@ -12,14 +12,16 @@ to_number = config("TO_NUMBER")
 
 logging.basicConfig(level=logging.INFO)
 logger=logging.getLogger(__name__)
+client = Client(account_sid,auth_token)
 
 def send_message(body_text):
     try:
-        message=Client.messages.create(
+        message=client.messages.create(
             from_=f"whatsapp:{twilio_number}",
             body=body_text,
             to=f"whatsapp:{to_number}"
         )
+        return
         logger.info(f"Message sent to {to_number}:{message.body}")
     except Exception as e:
         logger.error(f"Error sending message to {to_number}:{e}")
