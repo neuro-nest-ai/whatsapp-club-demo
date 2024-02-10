@@ -1,6 +1,7 @@
 import logging
 from twilio.rest import Client
 from decouple import config
+import requests
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -14,6 +15,13 @@ to_number = config("TO_NUMBER")
 
 # Initialize Twilio client
 client = Client(account_sid, auth_token)
+
+def get_image(url):
+    try:
+        response = requests.get(url, auth=(account_sid, auth_token))
+        return response
+    except Exception as e:
+        logger.error(f"Error sending message to {to_number}: {e}")
 
 def send_message(body_text):
     try:

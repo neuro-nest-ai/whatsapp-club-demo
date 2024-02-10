@@ -13,5 +13,5 @@ langchain-community
 Pillow 
 pytesseract
 opencv-python
-mysqlclient
+#mysqlclient
 datefinder
