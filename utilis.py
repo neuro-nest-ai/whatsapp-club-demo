@@ -1,50 +1,18 @@
-def is_image(file_path):
-    # List of common image file extensions
-    image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp']
+from PIL import Image
+import requests
+from io import BytesIO
 
-    # Check if the file path ends with any of the image extensions
-    if any(file_path.lower().endswith(ext) for ext in image_extensions):
-        return True
-    else:
+def is_image(url, headers=None):
+    try:
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            image_data = response.content
+            image = Image.open(BytesIO(image_data))
+            image.verify()  # This checks if the image is valid
+            return True
+        else:
+            print("Failed to fetch image, status code:", response.status_code)
+            return False
+    except Exception as e:
+        print("Exception while checking image:", e)
         return False
-
-# Example usage:
-file_path = 'example_image.jpg'
-if is_image(file_path):
-    print("The file is an image.")
-else:
-    print("The file is not an image.")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

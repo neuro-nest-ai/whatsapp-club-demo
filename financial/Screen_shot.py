@@ -52,7 +52,7 @@ class Dues:
         else:
             return str("something went wrong")
 
-    def extract_whatsapp_number(self, sender_id):
+    def extract_whatsapp_number(self):
         return request.form.get("From")
 
     def get_name_from_dict(self):
@@ -60,10 +60,14 @@ class Dues:
         for item in profile_data:
             if item.get('Mobile Phone') == phone_number:
                 return item.get('Name')
+            else:
+                return "your name not found"
 
-    def insert_into_database(self,image_path,sender_id,Subscription="default"):
-        Phone_number=self.extract_whatsapp_number(sender_id)
-        Name=self.get_from_dict()
+    def insert_into_database(self,image_path):
+        Phone_number=self.extract_whatsapp_number()
+        print(Phone_number)
+        Name=self.get_name_from_dict()
+        print(Name)
         Amount,Bank_number,UPI_traction_id=self.extract_payment_details(image_path)
         Date=datetime.now()
         if str(Bank_number).endswith('39'):
@@ -130,9 +134,9 @@ class Dues:
 class Screenshot_pipeline:
     def __init__(self):
         pass
-    def main(self,sender_id,image_path):
+    def main(self,image_path):
         dues_instance = Dues()
-        dues_instance.get_name_from_database(sender_id,image_path)
+        dues_instance.insert_into_database(image_path)
                
 
 

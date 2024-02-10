@@ -19,24 +19,27 @@ def extract_datetime(text):
     datetime_objects = [parser.parse(match, fuzzy=True) for match in matches]
     return datetime_objects
 
-def generate_answer(question, sender_id=None):
-    key_words_Donation = ["donation", "donate", "contribution","contribute"]
-    key_words_Dues = ["dues", "registration"]
-    key_words_generation = ['report', 'generation', 'report generation']
-    President_key_words_board = ["board_members", 'board members']
-    President_key_words_club_members = ["club_members", 'club members']
-    pattern = re.compile(r'^yes (\d{12}) trust$', re.IGNORECASE)  # Added re.IGNORECASE
-    
-    image = is_image(question)
-    if image:
-        screen_shot = Screenshot_pipeline()
-        payment = screen_shot.main(sender_id, image)
-        if payment:
-            return "Payment successfully done"
-        else:
-            invitation = President()
-            invitation.send_messages_to_board_members(image, question)  # Corrected argument
+
+   
+def image_details(question,sender_id=None):
+    screen_shot = Screenshot_pipeline()
+    payment = screen_shot.main(question)
+    print("sucessfully inserted")
+    if payment:
+        return "Payment successfully done"
     else:
+        return "upload proper screen shot"
+    #else:
+        #invitation = President()
+        #invitation.send_messages_to_board_members(image, question)
+        #return str("iam king")  # Corrected argument
+def generate_answer(question):
+        key_words_Donation = ["donation", "donate", "contribution","contribute"]
+        key_words_Dues = ["dues", "registration"]
+        key_words_generation = ['report', 'generation', 'report generation']
+        President_key_words_board = ["board_members", 'board members']
+        President_key_words_club_members = ["club_members", 'club members']
+        pattern = re.compile(r'^yes (\d{12}) trust$', re.IGNORECASE)  # Added re.IGNORECASE
         question = question.lower()
         response = palm.chat(messages=question, temperature=0.9, context="you are assistance bot give 5 lines")
         if any(keyword in response.messages[0]['content'].lower() for keyword in key_words_generation):
