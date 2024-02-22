@@ -1,6 +1,6 @@
 flask
 twilio
-decouple
+python-dotenv
 datefinder
 pyngrok
 google-generativeai
