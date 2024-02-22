@@ -9,10 +9,14 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 #Get Twilio credentials from environment variables
-account_sid = os.getenv("TWILIO_ACCOUNT_SID")
-auth_token = os.getenv("TWILIO_AUTH_TOKEN")
-twilio_number = os.getenv("TWILIO_NUMBER")
-to_number = os.getenv("TO_NUMBER")
+account_sid = "AC5c770f9ab12adfc23d89befc8bebad6c"
+print(account_sid)
+auth_token = '1a13bc4e337930fc2a4417327cb7d493'
+print(auth_token)
+twilio_number = "+14155238886"
+print(twilio_number)
+to_number = "+918861842522"
+print(to_number)
 
 #Initialize Twilio client
 client = Client(account_sid, auth_token)

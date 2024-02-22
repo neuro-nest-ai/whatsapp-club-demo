@@ -63,30 +63,47 @@ class PDFEditor:
                 writer.write(output_file)             
             os.remove("temp.pdf")
             
+            
     def insert_text_at_coordinates(self, text_dicts):
         writer = PdfWriter()
-        c = canvas.Canvas("temp.pdf")  # Moved outside the loop
         with open(self.pdf_path, "rb") as file:
             reader = PdfReader(file)
             for i, page in enumerate(reader.pages):
+                c = canvas.Canvas("temp.pdf", pagesize=(page.mediabox[2], page.mediabox[3]))
                 for text_dict in text_dicts:
                     if i == text_dict["page_number"]:
-                        c.setPageSize((page.mediabox[2], page.mediabox[3]))  # Set page size for each page
-                        c.setFont(text_dict.get("font_name", "Helvetica"), text_dict.get("font_size", 16))
-                        c.drawString(text_dict["x"], text_dict["y"], text_dict["text"])
-        c.save()  # Save the canvas outside the loop
-        with open(self.pdf_path, "rb") as file:
-            reader = PdfReader(file)
-            for i, page in enumerate(reader.pages):
-                for text_dict in text_dicts:
-                    if i == text_dict["page_number"]:
-                        img_pdf = PdfReader("temp.pdf")
-                        img_page = img_pdf.pages[0]
-                        page.merge_page(img_page)
-                        writer.add_page(page)
+                        font_name = text_dict.get("font_name", "Helvetica")
+                        font_size = text_dict.get("font_size", 16)
+                        c.setFont(font_name, font_size)
+                        text = text_dict["text"]
+                        x = text_dict["x"]
+                        y = text_dict["y"]
+                        max_width = page.mediabox[2] - x  # Maximum width before wrapping
+                        lines = self.wrap_text(text, c, max_width)
+                        for line in lines:
+                            c.drawString(x, y, line.strip())
+                            y -= font_size * 1.2  # Adjust line spacing as needed
+                c.save()
+                img_pdf = PdfReader("temp.pdf")
+                img_page = img_pdf.pages[0]
+                page.merge_page(img_page)
+                writer.add_page(page)
         with open(self.pdf_path, "wb") as output_file:
             writer.write(output_file)
         os.remove("temp.pdf")
+
+    def wrap_text(self, text, canvas_obj, max_width):
+        lines = []
+        line = ""
+        for word in text.split():
+            word_width = canvas_obj.stringWidth(word)
+            if canvas_obj.stringWidth(line + word) <= max_width:
+                line += word + " "
+            else:
+                lines.append(line)
+                line = word + " "
+        lines.append(line)
+        return lines
 
     def insert_image_new(self, image_path):
         x = 100

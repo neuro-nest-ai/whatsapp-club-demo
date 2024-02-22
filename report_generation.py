@@ -42,8 +42,8 @@ class PdfPipeline:
                     
                     text_dicts = [
                         {"x": 50, "y": 800-5, "text": search_text["Date"], "page_number": 0,"font_name": "Times-Roman", "font_size": 14},
-                        {"x": 170-15, "y": 700, "text": search_text["Heading"], "page_number": 0,"font_name": "Times-Roman", "font_size": 25},
-                        {"x": 25, "y": 400, "text": search_text["content"], "page_number": 0,"font_name": "Times-Roman", "font_size": 14},
+                        {"x": 150, "y": 700, "text": search_text["Heading"], "page_number": 0,"font_name": "Times-Roman", "font_size": 25},
+                        {"x": 60, "y": 400, "text": search_text["content"], "page_number": 0,"font_name": "Times-Roman", "font_size": 14},
                         {"x": 400, "y": 800-5, "text": search_text["Service"], "page_number": 0,"font_name": "Times-Roman", "font_size": 14}
                     ]
                     
@@ -115,7 +115,7 @@ class PdfPipelineConfig:
         merged_output_filenames.append(merged_output_filename)
         print(f"All PDF files merged successfully into {merged_output_filename}.")
         
-        return merged_output_filenames
+        return merged_output_filename
 
 # Example usage:
 if __name__ == "__main__":

@@ -35,10 +35,42 @@ def get_path(media_url,DOWNLOAD_DIRECTORY):
         f.write(image.content)
         image_path = f'{DOWNLOAD_DIRECTORY}/{unique_filename}'
     return image_path
+
+DOWNLOAD_DIRECTORY = 'Image_data'  
+    
+@app.route('/webhook', methods=['GET', 'POST'])
+def webhook():
+    print(request.json)
+    if request.method == 'POST':
+        mode = request.args.get('hub.mode')
+        token = request.args.get('hub.verify_token')
+        challenge = request.args.get('hub.challenge')
+        
+        
+    
+        if mode == 'subscribe' and token == "123456":
+            return challenge, 200
+        else:
+            return 'Verification failed', 403
+    elif request.method == 'GET':
+        mode = request.args.get('hub.mode')
+        token = request.args.get('hub.verify_token')
+        challenge = request.args.get('hub.challenge')
+    
+        if mode == 'subscribe' and token == "123456":
+            return challenge, 200
+        else:
+            return 'Verification failed', 403
+         
+     
+    
+    
+    
+    
+    
     
 
 
-DOWNLOAD_DIRECTORY = 'Image_data'    
 
 @app.route('/welcome',methods=['POST'])
 def home():
@@ -80,4 +112,4 @@ def home():
     msg.body(answer)
     return str(bot_resp)
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=False, port=8000)
+    app.run(host='0.0.0.0', debug=False, port=8000) 
